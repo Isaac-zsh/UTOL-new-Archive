@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://TestScenes/image2.png" type="Texture" id=1]
+[ext_resource path="res://GlobalScenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TestScenes/scene2.gd" type="Script" id=3]
+
+[node name="TestScene2" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Layer1" type="Control" parent="."]
+margin_left = 160.0
+margin_top = 30.0
+margin_right = 800.0
+margin_bottom = 510.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Image2" type="Sprite" parent="Layer1"]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="OtherPlayers" type="YSort" parent="YSort"]
+
+[node name="Player" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 448, 264 )

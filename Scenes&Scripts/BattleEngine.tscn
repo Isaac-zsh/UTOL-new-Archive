@@ -1,0 +1,153 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scenes&Scripts/BattleEngine.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Souls/Player/SoulBlackOutline.png" type="Texture" id=2]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ null ],
+"loop": true,
+"name": "normal",
+"speed": 5.0
+}, {
+"frames": [ null ],
+"loop": true,
+"name": "selected",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ null ],
+"loop": true,
+"name": "normal",
+"speed": 5.0
+}, {
+"frames": [ null ],
+"loop": true,
+"name": "selected",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ null ],
+"loop": true,
+"name": "normal",
+"speed": 5.0
+}, {
+"frames": [ null ],
+"loop": true,
+"name": "selected",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ null ],
+"loop": true,
+"name": "normal",
+"speed": 5.0
+}, {
+"frames": [ null ],
+"loop": true,
+"name": "selected",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "normal",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=6]
+resource_name = "battle_starts"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Soul:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_color_buttons"
+} ]
+}
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="BattleEngine" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 640.0
+margin_bottom = 480.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="bo1" type="AnimatedSprite" parent="." groups=["bottom_options"]]
+position = Vector2( 104, 416 )
+frames = SubResource( 1 )
+animation = "normal"
+
+[node name="bo2" type="AnimatedSprite" parent="." groups=["bottom_options"]]
+position = Vector2( 248, 416 )
+frames = SubResource( 2 )
+animation = "normal"
+
+[node name="bo3" type="AnimatedSprite" parent="." groups=["bottom_options"]]
+position = Vector2( 392, 416 )
+frames = SubResource( 3 )
+animation = "normal"
+
+[node name="bo4" type="AnimatedSprite" parent="." groups=["bottom_options"]]
+position = Vector2( 536, 416 )
+frames = SubResource( 4 )
+animation = "normal"
+
+[node name="Soul" type="AnimatedSprite" parent="."]
+position = Vector2( 11, 11 )
+frames = SubResource( 5 )
+animation = "normal"
+
+[node name="Animations" type="AnimationPlayer" parent="Soul"]
+root_node = NodePath("../..")
+autoplay = "battle_starts"
+anims/battle_starts = SubResource( 6 )
+
+[node name="pos_change" type="Tween" parent="."]
+
+[node name="FightBox" type="Panel" parent="."]
+margin_left = 48.0
+margin_top = 248.0
+margin_right = 592.0
+margin_bottom = 376.0
+custom_styles/panel = SubResource( 7 )

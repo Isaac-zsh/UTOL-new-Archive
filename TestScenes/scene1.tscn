@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://TestScenes/image1.png" type="Texture" id=1]
+[ext_resource path="res://GlobalScenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TestScenes/scene1.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 69, 36.5 )
+
+[node name="TestScene1" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Layer1" type="Control" parent="."]
+margin_left = 160.0
+margin_top = 30.0
+margin_right = 800.0
+margin_bottom = 510.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Image1" type="Sprite" parent="Layer1"]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="OtherPlayers" type="YSort" parent="YSort"]
+
+[node name="Player" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 448, 264 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 448, 444.5 )
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
